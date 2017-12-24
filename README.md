@@ -18,3 +18,4 @@ and every time
 ```
 workon matikgp
 ```
+or run a .bat file "run.bat" in "work_on_project" directory
