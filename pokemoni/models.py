@@ -13,7 +13,7 @@ class Ucet(models.Model):
     popularita = models.IntegerField(default=0)
 
     def __str__(self):
-        return "Ucet družinky {}".format(self.druzinka.nazov)
+        return "Ucet družinky {}".format(self.idDruzinka.nazov)
 
 class Pokemon(models.Model):
     id = models.AutoField(primary_key=True)
@@ -46,7 +46,7 @@ class Trener(models.Model):
     def __str__(self):
         return "Tréner {}".format(self.meno)
 
-class Kurz(models.Model):  
+class Kurz(models.Model):
     id = models.AutoField(primary_key=True)
 
     idTrener = models.ForeignKey(Trener, on_delete=models.CASCADE)
