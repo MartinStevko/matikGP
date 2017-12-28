@@ -7,3 +7,6 @@ class DruzinkaAdmin(admin.ModelAdmin):
     fields = ('nazov',)
 
 admin.site.register(Pokemon)
+admin.site.register(Trener)
+admin.site.register(Kurz)
+admin.site.register(Ucet)
