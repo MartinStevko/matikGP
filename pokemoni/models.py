@@ -5,13 +5,13 @@ class Druzinka(models.Model):
 
     def __str__(self):
         return "Družinka {}".format(self.nazov)
-    
+
 class Ucet(models.Model):
     idDruzinka = models.ForeignKey(Druzinka, on_delete=models.CASCADE)
-    
+
     peniaze = models.IntegerField(default=0)
     popularita = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return "Ucet družinky {}".format(self.druzinka.nazov)
 
@@ -42,16 +42,15 @@ class Trener(models.Model):
     qrychlost = models.IntegerField(default=0)
     qPostreh = models.IntegerField(default=0)
     qOdolnost = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return "Tréner {}".format(self.meno)
-    
+
 class Kurz(models.Model):  
     id = models.AutoField(primary_key=True)
     
     idTrener = models.ForeignKey(Trener, on_delete=models.CASCADE)
     idPokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return "Kurz cislo {}".format(self.id)
-    
