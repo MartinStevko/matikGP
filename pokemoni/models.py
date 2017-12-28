@@ -37,7 +37,6 @@ class Trener(models.Model):
 
     meno = models.CharField(max_length=100)
     cena = models.IntegerField(default=0)
-
     qSila = models.IntegerField(default=0)
     qrychlost = models.IntegerField(default=0)
     qPostreh = models.IntegerField(default=0)
