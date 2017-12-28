@@ -1,3 +1,0 @@
-- matikgp\urls.py
-- pokemoni\urls.py
-- pokemoni\views.py
