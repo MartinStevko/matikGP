@@ -1,0 +1,17 @@
+pre druzinku:
+ - zoznam pokemonov
+ - zoznam aktualnych trenerov
+ - stav uctu
+
+treningove centrum:
+ - cislo kurzu
+ - idPokemon, idTrener
+ - ? sprava
+ 
+vseobecne:
+ - treneri v meste
+ - popularita kazdej druzinky
+
+obchod:
+ - stranka ktora preradi pokemona druzinke
+ 
