@@ -2,6 +2,11 @@ Druzinky
 --id
 --nazov
 
+Ucet
+--idDruzinka
+--peniaze
+--popularita
+
 Pokémon
 --nazov
 --druzinka
@@ -14,3 +19,15 @@ Pokémon
 --energia
 --popularita
 --jedol
+
+Treneri
+--meno
+--cena
+--Qsila
+--Qrychlost
+--Qpostreh
+--Qodolnost
+
+Kurzy
+--idTrener
+--idPokemon
