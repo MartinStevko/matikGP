@@ -14,12 +14,12 @@ class TreningView(generic.base.TemplateView):
 def trenuj(request):
     try:
         trener = Trener.objects.get(pk=request.POST['trener_id'])
-    except (KeyError, Trener.DoesNotExist):
+    except (KeyError, ValueError, Trener.DoesNotExist):
         return render(request, 'pokemoni/trening.html', {'error_message': 'Tréner neexistuje'})
 
     try:
         pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
-    except (KeyError, Pokemon.DoesNotExist):
+    except (KeyError, ValueError, Pokemon.DoesNotExist):
         return render(request, 'pokemoni/trening.html', {'error_message': 'Pokémon neexistuje'})
 
     pokemon.sila += trener.qSila
