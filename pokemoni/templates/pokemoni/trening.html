@@ -7,10 +7,10 @@
     {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
     <form action="{% url 'pokemoni:trenuj' %}" method="post">
         {% csrf_token %}
-        <input type="number" value="trener_id" id="trener_id" name="trener_id" />
+        <input type="number" value="1" id="trener_id" name="trener_id" />
         <label for="trener_id">ID trénera</label>
         <br />
-        <input type="number" value="pokemon_id" id="pokemon_id" name="pokemon_id" />
+        <input type="number" value="1" id="pokemon_id" name="pokemon_id" />
         <label for="pokemon_id">ID pokémona</label>
         <br />
         <input type="submit" value="trenuj" />
