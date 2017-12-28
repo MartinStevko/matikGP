@@ -4,6 +4,9 @@ class Druzinka(models.Model):
     id = models.AutoField(primary_key=True)
     nazov = models.CharField(max_length=100)
 
+    def __str__(self):
+        return "Družinka {}".format(self.nazov)
+
 class Pokemon(models.Model):
     nazov = models.CharField(max_length=100)
     druzinka = models.ForeignKey(Druzinka, on_delete=models.CASCADE)
@@ -15,3 +18,6 @@ class Pokemon(models.Model):
 
     energia = models.IntegerField(default=10)
     jedol = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "Pokémon {} družinky {}".format(self.nazov, self.druzinka.nazov)
