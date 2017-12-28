@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Druzinka, Pokemon
+from .models import Druzinka, Pokemon, Trener, Kurz, Ucet
 
 @admin.register(Druzinka)
 class DruzinkaAdmin(admin.ModelAdmin):
