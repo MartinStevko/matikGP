@@ -13,7 +13,7 @@ class Ucet(models.Model):
     popularita = models.IntegerField(default=0)
 
     def __str__(self):
-        return "Ucet družinky {}".format(self.idDruzinka.nazov)
+        return "Účet družinky {}".format(self.idDruzinka.nazov)
 
 class Pokemon(models.Model):
     id = models.AutoField(primary_key=True)
@@ -38,7 +38,7 @@ class Trener(models.Model):
     meno = models.CharField(max_length=100)
     cena = models.IntegerField(default=0)
     qSila = models.IntegerField(default=0)
-    qrychlost = models.IntegerField(default=0)
+    qRychlost = models.IntegerField(default=0)
     qPostreh = models.IntegerField(default=0)
     qOdolnost = models.IntegerField(default=0)
 
