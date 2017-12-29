@@ -41,17 +41,17 @@ or run a .bat file "run.bat" in "work_on_project" directory
 ## Changed across multiple reboots status
 
 ### Instalation
-```terminal
+```bash
 sudo apt-get install git
-git init
-git config --global user.name "..."
-git config --global user.email ...@gmail.com
 sudo apt install pip
 pip install --upgrade pip
 sudo apt install virtualenv
 virtualenv matik
 source virtualenv/bin/activate
-pip install django==1.8
+git init
+git config --global user.name "..."
+git config --global user.email ...@gmail.com
+pip install django
 git clone git://github.com/MartinStevko/matikgp.git
 cd matikgp
 ```
