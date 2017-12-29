@@ -8,7 +8,7 @@
     {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
     <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Trénuj" />
     </form>
 </body>
