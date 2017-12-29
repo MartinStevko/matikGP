@@ -8,25 +8,28 @@ from django.urls import reverse
 
 from .models import Pokemon, Trener
 
-class TreningView(generic.base.TemplateView):
-    template_name = "pokemoni/trening.html"
+from .forms import TreningForm
 
-def trenuj(request):
-    try:
-        trener = Trener.objects.get(meno=request.POST['trener_meno'])
-    except (KeyError, ValueError, Trener.DoesNotExist):
-        return render(request, 'pokemoni/trening.html', {'error_message': 'Tréner neexistuje'})
+def trening(request):
+    if request.method == 'POST':
+        trener = Trener.objects.get(pk=request.POST['trener_meno'])
 
-    try:
-        pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
-    except (KeyError, ValueError, Pokemon.DoesNotExist):
-        return render(request, 'pokemoni/trening.html', {'error_message': 'Pokémon neexistuje'})
+        try:
+            pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
 
-    pokemon.sila += trener.qSila
-    pokemon.rychlost += trener.qRychlost
-    pokemon.postreh += trener.qPostreh
-    pokemon.odolnost += trener.qOdolnost
+        except (KeyError, ValueError, Pokemon.DoesNotExist):
+            return render(request, 'pokemoni/trening.html', {'form': TreningForm(), 'error_message': 'Pokémon neexistuje'})
 
-    pokemon.save()
+        pokemon.sila += trener.qSila
+        pokemon.rychlost += trener.qRychlost
+        pokemon.postreh += trener.qPostreh
+        pokemon.odolnost += trener.qOdolnost
+    
+        pokemon.energia += -5
 
-    return HttpResponseRedirect(reverse('pokemoni:trening'))
+        pokemon.save()
+
+        return render(request, 'pokemoni/trening.html', {'form': TreningForm(), 'error_message': 'Vyšlo to'})
+
+    else:
+        return render(request, 'pokemoni/trening.html', {'form': TreningForm()})
