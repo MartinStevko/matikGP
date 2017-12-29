@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tréning</title>
+    <title>Obchod</title>
 </head>
 <body>
-    <h1>Tréning</h1>
+    <h1>Obchod</h1>
     {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Trénuj" />
+        <input type="submit" value="Kúp pokémona" />
     </form>
 </body>
 </html>

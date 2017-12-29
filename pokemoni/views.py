@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect
 
 from django.shortcuts import reverse
 
-from .models import Pokemon, Trener, Kurz
+from .models import Pokemon, Trener, Kurz, Druzinka
 
-from .forms import TreningForm
+from .forms import TreningForm, ObchodForm
 
 def trening(request):
     template_name = 'pokemoni/trening.html'
@@ -46,6 +46,33 @@ def trening(request):
         pokemon.save()
 
         return HttpResponseRedirect(reverse('pokemoni:trening'))
+
+    else:
+        return render(request, template_name, {'form': form})
+
+def obchod(request):
+    template_name = 'pokemoni/obchod.html'
+    form = ObchodForm()
+
+    if request.method == 'POST':
+        try:
+            druzinka = Druzinka.objects.get(pk=request.POST['nova_druzinka'])
+
+        except (KeyError, ValueError, Druzinka.DoesNotExist):
+            return render(request, template_name, {'form': form, 'error_message': 'Družinka neexistuje'})
+
+        try:
+            pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
+
+        except (KeyError, ValueError, Pokemon.DoesNotExist):
+            return render(request, template_name, {'form': form, 'error_message': 'Pokémon neexistuje'})
+
+        pokemon.idDruzinka = druzinka
+        pokemon.nazov = request.POST['novy_nazov'] if request.POST['novy_nazov'] != '' else pokemon.nazov
+
+        pokemon.save()
+
+        return HttpResponseRedirect(reverse('pokemoni:obchod'))
 
     else:
         return render(request, template_name, {'form': form})

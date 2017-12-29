@@ -5,5 +5,6 @@ from . import views
 app_name = 'pokemoni'
 
 urlpatterns = [
-    path('trening', views.trening, name='trening')
+    path('trening', views.trening, name='trening'),
+    path('obchod', views.obchod, name='obchod')
 ]
