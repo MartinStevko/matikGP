@@ -1,5 +1,11 @@
 from django.shortcuts import render
 
+from django.http import HttpResponseRedirect
+
+from django.shortcuts import reverse
+
+from django.core.exceptions import ObjectDoesNotExist
+
 from .models import Pokemon, Trener, Kurz
 
 from .forms import TreningForm
@@ -41,7 +47,7 @@ def trening(request):
         pokemon.idDruzinka.ucet.save()
         pokemon.save()
 
-        return render(request, template_name, {'form': form, 'error_message': 'Tréning prebehol v poriadku'})
+        return HttpResponseRedirect(reverse('pokemoni:trening'))
 
     else:
         return render(request, template_name, {'form': form})
