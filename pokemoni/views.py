@@ -28,7 +28,7 @@ def trening(request):
             return render(request, template_name, {'form': form, 'error_message': 'Pokémon neexistuje'})
 
         if not hasattr(pokemon.idDruzinka, 'ucet') or pokemon.idDruzinka.ucet.peniaze < trener.cena:
-                return render(request, template_name, {'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
+            return render(request, template_name, {'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
 
         if pokemon.energia < 5:
             return render(request, template_name, {'form': form, 'error_message': 'Pokémon je vyčerpaný'})
