@@ -1,0 +1,39 @@
+h1 {
+    color: #FCA205;
+	font-size: 400%;
+}
+
+body {
+    padding-left: 15px;
+}
+
+th, td {
+    padding: 15px;
+}
+
+#pop {
+	font-size: 200%;
+}
+
+#tren {
+	font-size: 150%;
+	border: 1px solid black;
+}
+
+table#tren th {
+	border: 1px solid black;
+	text-align: center;
+}
+
+table#tren td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.r {
+	text-align: right;
+}
+
+.l {
+	text-align: left;
+}
