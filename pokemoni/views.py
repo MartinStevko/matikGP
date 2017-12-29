@@ -26,6 +26,8 @@ def trenuj(request):
     pokemon.rychlost += trener.qRychlost
     pokemon.postreh += trener.qPostreh
     pokemon.odolnost += trener.qOdolnost
+    
+    pokemon.energia += -5
 
     pokemon.save()
 
