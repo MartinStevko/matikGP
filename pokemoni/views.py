@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-from django.core.exceptions import ObjectDoesNotExist
-
 from .models import Pokemon, Trener, Kurz
 
 from .forms import TreningForm
