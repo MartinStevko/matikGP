@@ -1,7 +1,7 @@
 from django.db import models
 
 class Druzinka(models.Model):
-    nazov = models.CharField(max_length=100, unique=True)
+    nazov = models.CharField(max_length=100)
 
     def __str__(self):
         return "Družinka {}".format(self.nazov)
@@ -16,7 +16,7 @@ class Ucet(models.Model):
         return "Účet družinky {}".format(self.idDruzinka.nazov)
 
 class Pokemon(models.Model):
-    nazov = models.CharField(max_length=100, unique=True)
+    nazov = models.CharField(max_length=100)
     idDruzinka = models.ForeignKey(Druzinka, on_delete=models.CASCADE)
 
     sila = models.IntegerField(default=0)
@@ -31,10 +31,10 @@ class Pokemon(models.Model):
         return "Pokémon {} družinky {}".format(self.nazov, self.idDruzinka.nazov)
 
 class Trener(models.Model):
-    meno = models.CharField(max_length=100, unique=True)
+    meno = models.CharField(max_length=100)
     cena = models.IntegerField(default=0)
     vMeste = models.BooleanField(default=False)
-    
+
     qSila = models.IntegerField(default=0)
     qRychlost = models.IntegerField(default=0)
     qPostreh = models.IntegerField(default=0)
