@@ -13,6 +13,3 @@ class ObchodForm(forms.Form):
     novy_nazov = forms.CharField(max_length=100, label='Nový názov', required=False)
 
     pokemon_id = forms.IntegerField(label='ID pokémona')
-
-class PrehladForm(forms.Form):
-    druz1 = Druzinka.objects.all()[0]
