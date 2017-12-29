@@ -33,6 +33,8 @@ class Pokemon(models.Model):
 class Trener(models.Model):
     meno = models.CharField(max_length=100, unique=True)
     cena = models.IntegerField(default=0)
+    vMeste = models.BooleanField(default=False)
+    
     qSila = models.IntegerField(default=0)
     qRychlost = models.IntegerField(default=0)
     qPostreh = models.IntegerField(default=0)
