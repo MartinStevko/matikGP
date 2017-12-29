@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect
 
 from django.shortcuts import reverse
 
-from .models import Pokemon, Trener, Kurz, Druzinka
+from .models import Pokemon, Trener, Kurz, Druzinka, Ucet
 
-from .forms import TreningForm, ObchodForm, PrehladForm
+from .forms import TreningForm, ObchodForm
 
 def trening(request):
     template_name = 'pokemoni/trening.html'
@@ -47,7 +47,8 @@ def trening(request):
 
         return HttpResponseRedirect(reverse('pokemoni:trening'))
 
-    return render(request, template_name, {'form': form})
+    else:
+        return render(request, template_name, {'form': form})
 
 def obchod(request):
     template_name = 'pokemoni/obchod.html'
@@ -78,5 +79,7 @@ def obchod(request):
 
 def prehlad(request):
     template_name = 'pokemoni/prehlad.html'
-    form = PrehladForm()
-    return render(request, template_name, {'form': form})
+    ucty = Ucet.objects.all().order_by('-popularita')
+    druzinky = Druzinka.objects.all()
+    treneri = Trener.objects.filter(vMeste=True)
+    return render(request, template_name, {'ucty': ucty, 'druzinky': druzinky, 'treneri': treneri})
