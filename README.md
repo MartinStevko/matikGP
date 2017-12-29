@@ -2,20 +2,56 @@
 Django project for correspondence seminars. Grand Prix of winter Matik 2018.
 
 ## Installation
+
+### Windows
 ```cmd
 pip install Django==2.0
 ```
+```cmd
+pip install virtualenvwrapper-win
 ```
+### Linux
+```cmd
+sudo apt install pip
+```
+```cmd
+pip install Django==2.0
+```
+```cmd
 pip install virtualenvwrapper-win
 ```
 
 ## Work on project
 For a first time
-```
+```cmd
 mkvirtualenv matikgp
 ```
-and every time
+```cmd
+manage.py makemigrations pokemoni
 ```
+```cmd
+manage.py migrate
+```
+and every time
+```cmd
 workon matikgp
 ```
 or run a .bat file "run.bat" in "work_on_project" directory
+
+## Changed across multiple reboots status
+
+### Instalation
+```bash
+sudo apt-get install git
+sudo apt install pip
+pip install --upgrade pip
+sudo apt install virtualenv
+virtualenv matik
+source virtualenv/bin/activate
+git init
+git config --global user.name "..."
+git config --global user.email ...@gmail.com
+pip install django
+git clone git://github.com/MartinStevko/matikgp.git
+cd matikgp
+```
