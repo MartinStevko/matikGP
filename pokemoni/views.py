@@ -4,8 +4,6 @@ from django.http import HttpResponseRedirect
 
 from django.shortcuts import reverse
 
-from django.core.exceptions import ObjectDoesNotExist
-
 from .models import Pokemon, Trener, Kurz
 
 from .forms import TreningForm
