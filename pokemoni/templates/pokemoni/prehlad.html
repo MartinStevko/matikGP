@@ -1,1 +1,62 @@
-<h1>Prehlad</h1>
+{% load staticfiles %}
+
+<!-- Auto refresh results -->
+<meta http-equiv="refresh" content="5">
+
+<html>
+<head>
+    <title>Prehlad</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'css/prehlad.css' %}">
+</head>
+<body>
+	<div style="width: 100%;">
+		<div style="float:left; width: 24%">
+			<h1><strong>Popularita</strong></h1>
+			{% csrf_token %}
+			{% for ucet in ucty %}
+				<form method="POST">
+					<div>
+						<table id="pop" class="fixed">
+							<col width="250px" />
+							<col width="50px" />
+							<tr>
+								<td>{{ ucet.idDruzinka.nazov }}:</td>
+								<td class="r"><em>{{ ucet.popularita }}</em></td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			{% endfor %}
+	    </div>
+	    <div style="float:right; width: 70%">
+			<h1><strong>Tréneri v meste</strong></h1>
+			<table id="tren">
+			  <tr>
+				<th rowspan="2" id="tren">Meno</th>
+				<th rowspan="2" id="tren">Cena</th> 
+				<th colspan="4" id="tren">Kvalita trénera</th>
+			  </tr>
+			  <tr>
+				<th>Sila</th>
+				<th>Rýchlosť</th>
+				<th>Postreh</th>
+				<th>Odolnosť</th>
+			  </tr>
+			  {% for trener in treneri %}
+				  <tr>
+					<td class="l">{{ trener.meno }}</td>
+					<td>{{ trener.cena }}</td>
+					<td>{{ trener.qSila }}</td>
+					<td>{{ trener.qRychlost }}</td>
+					<td>{{ trener.qPostreh }}</td>
+					<td>{{ trener.qOdolnost }}</td>
+				  </tr>
+			  {% endfor %}
+			</table>
+	    </div>
+	</div>
+	<div style="clear:both"></div>
+</body>
+</html>
