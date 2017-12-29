@@ -41,7 +41,7 @@ or run a .bat file "run.bat" in "work_on_project" directory
 ## Changed across multiple reboots status
 
 ### Instalation
-```bash
+```terminal
 sudo apt-get install git
 git init
 git config --global user.name "..."
