@@ -7,7 +7,7 @@ class Druzinka(models.Model):
         return "Družinka {}".format(self.nazov)
 
 class Ucet(models.Model):
-    idDruzinka = models.ForeignKey(Druzinka, on_delete=models.CASCADE)
+    idDruzinka = models.OneToOneField(Druzinka, on_delete=models.CASCADE, null=True)
 
     peniaze = models.IntegerField(default=0)
     popularita = models.IntegerField(default=0)
