@@ -5,7 +5,7 @@
 </head>
 <body>
     {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
-    <form action="{% url 'pokemoni:trening' %}" method="post">
+    <form method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="trenuj" />
