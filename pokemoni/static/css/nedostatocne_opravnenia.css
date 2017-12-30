@@ -4,3 +4,8 @@
   text-align: center;
   color: #ff0000;
 }
+
+#debug {
+  padding: 50px;
+  text-size: 150%;
+}
