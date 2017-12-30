@@ -1,8 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 
 from django.http import HttpResponseRedirect
-
-from django.shortcuts import reverse
 
 import time
 
