@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 
 from .models import Pokemon, Trener, Kurz, Druzinka, Ucet
 
-from .forms import TreningForm, ObchodForm
+from .forms import TreningForm, ObchodForm, JedalenForm
 
 def trening(request):
     template_name = 'pokemoni/trening.html'
@@ -77,6 +77,31 @@ def obchod(request):
     else:
         return render(request, template_name, {'form': form})
 
+def jedalen(request):
+    template_name = 'pokemoni/jedalen.html'
+    form = JedalenForm()
+
+    if request.method == 'POST':
+        try:
+            pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
+
+        except (KeyError, ValueError, Pokemon.DoesNotExist):
+            return render(request, template_name, {'form': form, 'error_message': 'Pokémon neexistuje'})
+
+        if not hasattr(pokemon.idDruzinka, 'ucet') or pokemon.idDruzinka.ucet.peniaze < int(request.POST['cena']):
+            return render(request, template_name, {'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
+
+        pokemon.jedol = True
+        pokemon.idDruzinka.ucet.peniaze -= int(request.POST['cena'])
+
+        pokemon.save()
+        pokemon.idDruzinka.ucet.save()
+
+        return HttpResponseRedirect(reverse('pokemoni:jedalen'))
+
+    else:
+        return render(request, template_name, {'form': form})
+
 def prehlad(request):
     template_name = 'pokemoni/prehlad.html'
     ucty = Ucet.objects.all().order_by('-popularita')
@@ -86,7 +111,6 @@ def prehlad(request):
 
 def druzinka(request, num):
     template_name = 'pokemoni/druzinka.html'
-    druz = Druzinka.objects.filter(url_number=num)
-    for d in druz:
-        pokemoni = Pokemon.objects.filter(idDruzinka=d.id)
+    druz = Druzinka.objects.get(url_number=num)
+    pokemoni = Pokemon.objects.filter(idDruzinka=druz.id)
     return render(request, template_name, {'druz': druz, 'pokemoni': pokemoni})

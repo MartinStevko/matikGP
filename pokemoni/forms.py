@@ -13,3 +13,8 @@ class ObchodForm(forms.Form):
     novy_nazov = forms.CharField(max_length=100, label='Nový názov', required=False)
 
     pokemon_id = forms.IntegerField(label='ID pokémona')
+
+class JedalenForm(forms.Form):
+    pokemon_id = forms.IntegerField(label='ID pokémona')
+
+    cena = forms.IntegerField(initial=0, widget=forms.widgets.HiddenInput())
