@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 <!-- Auto refresh results -->
-<!--<meta http-equiv="refresh" content="10">-->
+<meta http-equiv="refresh" content="5">
 
 <html>
 <head>
@@ -9,18 +9,56 @@
      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'css/druzinka.css' %}">
+	<script>
+		var m = {{ m }};
+		var s = {{ s }};
+		function startTime() {
+			if (s<1) {
+			  m = m-1;
+			  if (m<0) {
+				return;
+			  };
+			  s=60;
+			};
+			s = s-1;
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('timer').innerHTML =
+			m + ":" + s;
+			var t = setTimeout(startTime, 1000);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + parseInt(i)};  // add zero in front of numbers < 10
+			return i;
+		}
+	</script>
 </head>
-<body>
+<body onload="startTime()">
   <div style="width: 100%;">
     <div style="float:left; width: 62%">
-      <h1><strong>Pokémoni</strong></h1>
+        <h1><strong>Čas do konca kola</strong></h1>
+		<div id="timer"></div>
+    </div>
+    <div style="float:right; width: 38%">
+        <h1><strong>Stav účtu</strong></h1>
+		<div id="u">
+			Peniaze: <em>{{ ucet.peniaze }}€</em><br>
+			Popularita: <em>{{ ucet.popularita }}</em>
+		</div>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+  <div>
+	  <h1><strong>Pokémoni</strong></h1>
       <table id="t01" class="fixed">
-        <col width="45px" />
-        <col width="255px" />
-        <col width="100px" />
-        <col width="100px" />
-        <col width="100px" />
-        <col width="100px" />
+        <col width="50px" />
+        <col width="300px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col width="120px" />
+		<col width="120px" />
+		<col width="120px" />
         <tr>
           <th>#</th>
         <th>Meno</th>
@@ -28,6 +66,8 @@
         <th>Rýchlosť</th>
         <th>Postreh</th>
         <th>Odolnosť</th>
+		<th>Energia</th>
+		<th>Jedol</th>
         </tr>
         {% for p in pokemoni %}
           <tr>
@@ -37,15 +77,18 @@
           <td>{{ p.rychlost }}</td>
           <td>{{ p.postreh }}</td>
           <td>{{ p.odolnost }}</td>
+		  <td>{{ p.energia }}</td>
+		  <td>
+			{% if p.jedol %}
+				Áno
+			{% else %}
+				Nie
+			{% endif %}
+		  </td>
           </tr>
         {% endfor %}
       </table>
-      </div>
-      <div style="float:right; width: 38%">
-      <h1><strong>Stav účtu</strong></h1>
-      </div>
   </div>
-  <div style="clear:both"></div>
   <script>
     var x=0;
     x=x+1
