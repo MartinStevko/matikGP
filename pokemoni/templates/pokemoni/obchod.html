@@ -1,10 +1,14 @@
-{% if user.is_authenticated %}
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Obchod</title>
-    </head>
-    <body>
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Obchod</title>
+    <link rel="stylesheet" href="{% static 'css/nedostatocne_opravnenia.css' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
         <h1>Obchod</h1>
         {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
         <form method="POST">
@@ -12,8 +16,8 @@
             {{ form.as_p }}
             <input type="submit" value="Kúp pokémona" />
         </form>
-    </body>
-    </html>
-{% else %}
-    <h1>Na túto stránku nemáte oprávnenie!</h1>
-{% endif %}
+    {% else %}
+        <h1 id="no">Na túto stránku nemáte dostatočné oprávnenia!</h1>
+    {% endif %}
+</body>
+</html>
