@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Obchod</title>
-</head>
-<body>
-    <h1>Obchod</h1>
-    {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Kúp pokémona" />
-    </form>
-</body>
-</html>
+{% if user.is_authenticated %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Obchod</title>
+    </head>
+    <body>
+        <h1>Obchod</h1>
+        {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Kúp pokémona" />
+        </form>
+    </body>
+    </html>
+{% else %}
+    <h1>Na túto stránku nemáte oprávnenie!</h1>
+{% endif %}
