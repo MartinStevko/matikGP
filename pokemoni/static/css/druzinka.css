@@ -1,5 +1,5 @@
 body {
-    padding-left: 15px;
+    padding: 15px;
 }
 
 h1 {
@@ -27,7 +27,7 @@ table#t01 tr:nth-child(odd) {
 
 table#t01 {
     border: 1px solid black;
-	font-size: 115%;
+	font-size: 130%;
 }
 
 .l {
@@ -41,4 +41,14 @@ table#t01 {
 .fixed td:first-child:before {
   counter-increment: serial-number;
   content: counter(serial-number);
+}
+
+#u {
+	padding-left: 20px;
+	font-size: 250%;
+}
+
+#timer {
+	padding-left:150px;
+	font-size: 500%
 }
