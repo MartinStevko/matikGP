@@ -1,6 +1,10 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render
 
 from django.http import HttpResponseRedirect
+
+from django.shortcuts import reverse
+
+import time
 
 from .models import Pokemon, Trener, Kurz, Druzinka, Ucet
 
@@ -100,6 +104,19 @@ def jedalen(request):
     else:
         return render(request, template_name, {'form': form})
 
+# alert("Cas vyprsal!");
+p = True
+def timer():
+    if p:
+        zaciatok_hry = 0 # cas v sekundach na zaciatku hry
+        teraz = round(time.time())
+        t = 480 - ((teraz - zaciatok_hry) % 480) # modulo 60 * dlzka kola v minutach
+        m = t // 60
+        s = t % 60
+        return m, s
+    else:
+        return 0, 0
+
 def prehlad(request):
     template_name = 'pokemoni/prehlad.html'
     ucty = Ucet.objects.all().order_by('-popularita')
@@ -111,4 +128,6 @@ def druzinka(request, num):
     template_name = 'pokemoni/druzinka.html'
     druz = Druzinka.objects.get(url_number=num)
     pokemoni = Pokemon.objects.filter(idDruzinka=druz.id)
-    return render(request, template_name, {'druz': druz, 'pokemoni': pokemoni})
+    ucet = Ucet.objects.get(idDruzinka=druz.id)
+    mi, se = timer()
+    return render(request, template_name, {'m': mi, 's': se, 'druz': druz, 'pokemoni': pokemoni, 'ucet': ucet})
