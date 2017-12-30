@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+<!-- Auto refresh results -->
+<!--<meta http-equiv="refresh" content="10">-->
+
+<html>
+<head>
+    <title>
+		{% for d in druz %}
+			{{ d.nazov }}
+		{% endfor %}
+	</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'css/druzinka.css' %}">
+</head>
+<body>
+	<div style="width: 100%;">
+		<div style="float:left; width: 62%">
+			<h1><strong>Pokémoni</strong></h1>
+			<table id="t01" class="fixed">
+			  <col width="45px" />
+			  <col width="255px" />
+			  <col width="100px" />
+			  <col width="100px" />
+			  <col width="100px" />
+			  <col width="100px" />
+			  <tr>
+			    <th>#</th>
+				<th>Meno</th>
+				<th>Sila</th> 
+				<th>Rýchlosť</th>
+				<th>Postreh</th>
+				<th>Odolnosť</th>
+			  </tr>
+			  {% for p in pokemoni %}
+				  <tr>
+					<td>.</td>
+					<td class="l">{{ p.nazov }}</td>
+					<td>{{ p.sila }}</td>
+					<td>{{ p.rychlost }}</td>
+					<td>{{ p.postreh }}</td>
+					<td>{{ p.odolnost }}</td>
+				  </tr>
+			  {% endfor %}
+			</table>
+	    </div>
+	    <div style="float:right; width: 38%">
+			<h1><strong>Stav účtu</strong></h1>
+	    </div>
+	</div>
+	<div style="clear:both"></div>
+	<script>
+		var x=0;
+		x=x+1
+		document.getElementById("demo").innerHTML = x;
+	</script>
+</body>
+</html>
