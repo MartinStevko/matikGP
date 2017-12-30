@@ -83,3 +83,10 @@ def prehlad(request):
     druzinky = Druzinka.objects.all()
     treneri = Trener.objects.filter(vMeste=True)
     return render(request, template_name, {'ucty': ucty, 'druzinky': druzinky, 'treneri': treneri})
+
+def druzinka(request, num):
+    template_name = 'pokemoni/druzinka.html'
+    druz = Druzinka.objects.filter(url_number=num)
+    for d in druz:
+        pokemoni = Pokemon.objects.filter(idDruzinka=d.id)
+    return render(request, template_name, {'druz': druz, 'pokemoni': pokemoni})
