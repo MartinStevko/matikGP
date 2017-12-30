@@ -4,7 +4,7 @@ from .models import Druzinka, Pokemon, Trener, Kurz, Ucet
 
 @admin.register(Druzinka)
 class DruzinkaAdmin(admin.ModelAdmin):
-    fields = ('nazov',)
+    fields = ('nazov','url_number',)
 
 admin.site.register(Pokemon)
 admin.site.register(Trener)
