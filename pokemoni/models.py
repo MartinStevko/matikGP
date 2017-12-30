@@ -2,6 +2,7 @@ from django.db import models
 
 class Druzinka(models.Model):
     nazov = models.CharField(max_length=100)
+    url_number = models.IntegerField(default=424769)
 
     def __str__(self):
         return "Družinka {}".format(self.nazov)
