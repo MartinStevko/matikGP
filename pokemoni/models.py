@@ -50,3 +50,9 @@ class Kurz(models.Model):
 
     def __str__(self):
         return "Kurz cislo {}".format(self.id)
+
+class Akcia(models.Model):
+    meno = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{}".format(self.meno)
