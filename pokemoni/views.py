@@ -8,28 +8,38 @@ from .models import Pokemon, Trener, Kurz, Druzinka, Ucet, Akcia
 
 from .forms import TreningForm, ObchodForm, JedalenForm, SpravcaForm
 
+def bezi():
+    z = zaciatok()
+    k = koniec()
+    t = round(time.time())
+    if z < t and t < k:
+        return True
+    else:
+        return False
+
 def trening(request):
     template_name = 'pokemoni/trening.html'
     form = TreningForm()
+    be = bezi()
 
     if request.method == 'POST':
         try:
             trener = Trener.objects.get(pk=request.POST['trener_meno'])
 
         except (KeyError, ValueError, Trener.DoesNotExist):
-            return render(request, template_name, {'form': form, 'error_message': 'Tréner neexistuje'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Tréner neexistuje'})
 
         try:
             pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
 
         except (KeyError, ValueError, Pokemon.DoesNotExist):
-            return render(request, template_name, {'form': form, 'error_message': 'Pokémon neexistuje'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Pokémon neexistuje'})
 
         if not hasattr(pokemon.idDruzinka, 'ucet') or pokemon.idDruzinka.ucet.peniaze < trener.cena:
-            return render(request, template_name, {'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
 
         if pokemon.energia < 5:
-            return render(request, template_name, {'form': form, 'error_message': 'Pokémon je vyčerpaný'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Pokémon je vyčerpaný'})
 
         pokemon.sila += trener.qSila
         pokemon.rychlost += trener.qRychlost
@@ -48,24 +58,25 @@ def trening(request):
         return HttpResponseRedirect(reverse('pokemoni:trening'))
 
     else:
-        return render(request, template_name, {'form': form})
+        return render(request, template_name, {'be': be, 'form': form})
 
 def obchod(request):
     template_name = 'pokemoni/obchod.html'
     form = ObchodForm()
+    be = bezi()
 
     if request.method == 'POST':
         try:
             druzinka = Druzinka.objects.get(pk=request.POST['nova_druzinka'])
 
         except (KeyError, ValueError, Druzinka.DoesNotExist):
-            return render(request, template_name, {'form': form, 'error_message': 'Družinka neexistuje'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Družinka neexistuje'})
 
         try:
             pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
 
         except (KeyError, ValueError, Pokemon.DoesNotExist):
-            return render(request, template_name, {'form': form, 'error_message': 'Pokémon neexistuje'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Pokémon neexistuje'})
 
         pokemon.idDruzinka = druzinka
         pokemon.nazov = request.POST['novy_nazov'] if request.POST['novy_nazov'] != '' else pokemon.nazov
@@ -75,21 +86,22 @@ def obchod(request):
         return HttpResponseRedirect(reverse('pokemoni:obchod'))
 
     else:
-        return render(request, template_name, {'form': form})
+        return render(request, template_name, {'be': be, 'form': form})
 
 def jedalen(request):
     template_name = 'pokemoni/jedalen.html'
     form = JedalenForm()
+    be = bezi()
 
     if request.method == 'POST':
         try:
             pokemon = Pokemon.objects.get(pk=request.POST['pokemon_id'])
 
         except (KeyError, ValueError, Pokemon.DoesNotExist):
-            return render(request, template_name, {'form': form, 'error_message': 'Pokémon neexistuje'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Pokémon neexistuje'})
 
         if not hasattr(pokemon.idDruzinka, 'ucet') or pokemon.idDruzinka.ucet.peniaze < int(request.POST['cena']):
-            return render(request, template_name, {'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
+            return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
 
         pokemon.jedol = True
         pokemon.idDruzinka.ucet.peniaze -= int(request.POST['cena'])
@@ -100,7 +112,7 @@ def jedalen(request):
         return HttpResponseRedirect(reverse('pokemoni:jedalen'))
 
     else:
-        return render(request, template_name, {'form': form})
+        return render(request, template_name, {'be': be, 'form': form})
 
 def zaciatok(t = 10**11):
     if t != 10**11:
@@ -143,16 +155,6 @@ def timer():
     else:
         m, s = -1, 0
     return m, s
-
-def bezi():
-    z = zaciatok()
-    k = koniec()
-    t = round(time.time())
-    b = False
-    if z < t:
-        if t < k:
-            b = True
-    return b
 
 def spravca(request):
     template_name = 'pokemoni/spravca.html'
