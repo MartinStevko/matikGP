@@ -1,23 +1,25 @@
-{% load staticfiles %}
+{% if be %}
+  {% load staticfiles %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Obchod</title>
-    <link rel="stylesheet" href="{% static 'css/nedostatocne_opravnenia.css' %}">
-</head>
-<body>
-    {% if user.is_authenticated %}
-        <h1>Obchod</h1>
-        {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Kúp pokémona" />
-        </form>
-    {% else %}
-        <h1 id="no">Na túto stránku nemáte dostatočné oprávnenia!</h1>
-        <div id="debug">Pokračujte prihlásením do svojho účtu na <em>host_server_ip</em>/admin/login/?next=/admin/</div>
-    {% endif %}
-</body>
-</html>
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Obchod</title>
+      <link rel="stylesheet" href="{% static 'css/nedostatocne_opravnenia.css' %}">
+  </head>
+  <body>
+      {% if user.is_authenticated %}
+          <h1>Obchod</h1>
+          {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
+          <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="Kúp pokémona" />
+          </form>
+      {% else %}
+          <h1 id="no">Na túto stránku nemáte dostatočné oprávnenia!</h1>
+          <div id="debug">Pokračujte prihlásením do svojho účtu na <em>host_server_ip</em>/admin/login/?next=/admin/</div>
+      {% endif %}
+  </body>
+  </html>
+{% endif %}
