@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/nedostatocne_opravnenia.css' %}">
 </head>
 <body>
-    {% if user.is_authenticated %}
+    {% if user.is_superuser %}
         <h1>Správca</h1>
         {% if message %}<strong>{{ message }}</strong>{% endif %}
         <form method="post">
