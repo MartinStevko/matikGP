@@ -166,6 +166,8 @@ def spravca(request):
         # 2 - Ukon4i hru
         if akcia == '1':
             zaciatok(time.time())
+            with open('koniec.txt', 'w') as f:
+                f.write('')
         elif akcia == '2':
             koniec(time.time())
         else:
@@ -190,3 +192,7 @@ def druzinka(request, num):
     ucet = Ucet.objects.get(idDruzinka=druz.id)
     mi, se = timer()
     return render(request, template_name, {'m': mi, 's': se, 'druz': druz, 'pokemoni': pokemoni, 'ucet': ucet})
+
+def zoznam(request):
+    template_name = 'pokemoni/zoznam.html'
+    return render(request, template_name, {})
