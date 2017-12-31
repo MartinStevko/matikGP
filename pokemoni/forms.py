@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Trener, Druzinka
+from .models import Trener, Druzinka, Akcia
 
 class TreningForm(forms.Form):
     trener_meno = forms.ModelChoiceField(queryset=Trener.objects.filter(vMeste=True), label='Meno trénera')
@@ -18,3 +18,6 @@ class JedalenForm(forms.Form):
     pokemon_id = forms.IntegerField(label='ID pokémona')
 
     cena = forms.IntegerField(initial=0, widget=forms.widgets.HiddenInput())
+
+class SpravcaForm(forms.Form):
+    akcia = forms.ModelChoiceField(queryset=Akcia.objects.all(), label='Akcia')
