@@ -36,7 +36,9 @@ and every time
 ```cmd
 workon matikgp
 ```
-or run a .bat file "run.bat" in "work_on_project" directory
+or run a .bat file "run.bat" in "work_on_project" directory.
+
+Don't forget to remove all data inside files "zaciatok.txt" and "koniec.txt" before game starts!
 
 ## Changed across multiple reboots status
 
