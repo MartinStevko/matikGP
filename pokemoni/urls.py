@@ -10,4 +10,5 @@ urlpatterns = [
     path('prehlad', views.prehlad, name='prehlad'),
     path('druzinka/<int:num>', views.druzinka, name='druzinka'),
     path('jedalen', views.jedalen, name='jedalen'),
+    path('spravca', views.spravca, name='spravca'),
 ]
