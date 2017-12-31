@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import pokemoni
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pokemoni/', include('pokemoni.urls'))
+    path('pokemoni/', include('pokemoni.urls')),
+    path('', pokemoni.views.zoznam, name=''),
 ]
