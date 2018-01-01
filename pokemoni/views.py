@@ -159,20 +159,24 @@ def spravca(request):
     template_name = 'pokemoni/spravca.html'
     form = SpravcaForm()
     akcie = Akcia.objects.all()
+    k = round((time.time() - zaciatok()) // 480) + 1
+    mi, se = timer()
 
     if request.method == 'POST':
-        message = 'Akcia bola úspešná'
         akcia = str(request.POST['akcia'])
         # 1 - Začni hru
         # 2 - Ukonči hru
         # 3 - Vyhodnoť kolo
         if akcia == '1':
+            message = 'Hra začala'
             zaciatok(time.time())
             with open('koniec.txt', 'w') as f:
                 f.write('')
         elif akcia == '2':
+            message = 'Hra skončí po konci tohto kola (akcia sa odvráti jedine premazaním súboru koniec.txt)'
             koniec(time.time())
         elif akcia == '3':
+            message = "Kolo %d bolo vyhodnotené" % (k)
             pokemoni = Pokemon.objects.all()
 
             sutaz = []
@@ -208,11 +212,11 @@ def spravca(request):
 
         else:
             message = 'Akcia '+str(akcia)+' sa nevykonala'
-            return render(request, template_name, {'akcie': akcie, 'form': form, 'message': message})
+            return render(request, template_name, {'mi': mi, 'se': se, 'kolo': k, 'akcie': akcie, 'form': form, 'message': message})
 
-        return render(request, template_name, {'akcie': akcie, 'form': form, 'message': message})
+        return render(request, template_name, {'mi': mi, 'se': se, 'kolo': k, 'akcie': akcie, 'form': form, 'message': message})
     else:
-        return render(request, template_name, {'form': form, 'akcie': akcie})
+        return render(request, template_name, {'mi': mi, 'se': se, 'kolo': k, 'form': form, 'akcie': akcie})
 
 def prehlad(request):
     template_name = 'pokemoni/prehlad.html'
