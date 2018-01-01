@@ -1,11 +1,10 @@
 from django.shortcuts import render, reverse
-
 from django.http import HttpResponseRedirect
 
 import time
+from random import randint
 
 from .models import Pokemon, Trener, Kurz, Druzinka, Ucet, Akcia
-
 from .forms import TreningForm, ObchodForm, JedalenForm, SpravcaForm
 
 def bezi():
@@ -165,13 +164,38 @@ def spravca(request):
         message = 'Akcia bola úspešná'
         akcia = str(request.POST['akcia'])
         # 1 - Začni hru
-        # 2 - Ukon4i hru
+        # 2 - Ukonči hru
+        # 3 - Vyhodnoť kolo
         if akcia == '1':
             zaciatok(time.time())
             with open('koniec.txt', 'w') as f:
                 f.write('')
         elif akcia == '2':
             koniec(time.time())
+        elif akcia == '3':
+            pokemoni = Pokemon.objects.all()
+
+            for pokemon in pokemoni:
+                if not hasattr(pokemon.idDruzinka, 'ucet'):
+                    continue
+                elif not pokemon.jedol:
+                    pokemon.idDruzinka = Druzinka.objects.get(nazov='Mrtvoly')
+                else:
+                    pokemon.jedol = False
+                    pokemon.energia = max(10, pokemon.energia+1)
+
+                pokemon.save()
+
+            treneri = Trener.objects.all()
+
+            for trener in treneri:
+                if randint(1, 4) == 4:
+                    trener.vMeste = True
+                else:
+                    trener.vMeste = False
+
+                trener.save()
+
         else:
             message = 'Akcia '+str(akcia)+' sa nevykonala'
             return render(request, template_name, {'akcie': akcie, 'form': form, 'message': message})
