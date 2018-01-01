@@ -4,20 +4,53 @@
 <head>
     <title>Správca</title>
     <link rel="stylesheet" href="{% static 'css/nedostatocne_opravnenia.css' %}">
+    <script>
+  		var m = {{ mi }};
+  		var s = {{ se }};
+  		function startTime() {
+  			if (s<1) {
+  			  m = m-1;
+  			  if (m<0) {
+  				  alert("Kolo skončilo, vyhodnoť ho!")
+  			  };
+  			  s=60;
+  			};
+  			s = s-1;
+  			m = checkTime(m);
+  			s = checkTime(s);
+  			document.getElementById('timer').innerHTML =
+  			m + ":" + s;
+  			var t = setTimeout(startTime, 1000);
+  		}
+  		function checkTime(i) {
+  			if (i < 10) {i = "0" + parseInt(i)};  // add zero in front of numbers < 10
+  			return i;
+  		}
+  	</script>
 </head>
-<body>
+<body onload="startTime()">
     {% if user.is_superuser %}
-        <h1>Správca</h1>
-        {% if message %}<strong>{{ message }}</strong>{% endif %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Vykonaj" />
-        </form>
-        <h2>Akcie</h2>
-        {% for akcia in akcie %}
-          <div>{{ akcia.id }} - {{ akcia.meno }}</div>
-        {% endfor %}
+      <div style="width: 100%;">
+        <div style="float:left; width: 40%;">
+          <h1>Správca</h1>
+          {% if message %}<strong>{{ m }}</strong>{% endif %}
+          Prebieha {{ kolo }}. kolo
+          <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="Vykonaj" />
+          </form>
+          <h2>Akcie</h2>
+          {% for akcia in akcie %}
+            <div>{{ akcia.id }} - {{ akcia.meno }}</div>
+          {% endfor %}
+        </div>
+        <div style="float:right; width: 60%;">
+          <div>
+            <strong><div id="timer"></div></strong>
+          </div>
+        </div>
+      </div>
     {% else %}
         <h1 id="no">Na túto stránku nemáte dostatočné oprávnenia!</h1>
         <div id="debug">Pokračujte prihlásením do svojho účtu na <em>host_server_ip</em>/admin/login/?next=/admin/</div>
