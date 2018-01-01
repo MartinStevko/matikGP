@@ -1977,6 +1977,12 @@ trener_priezviska = format(t_priezviska, trener_priezviska, ' ')
 
 from random import choice, randint
 
+with open('zaciatok.txt', 'w'):
+	pass
+
+with open('koniec.txt', 'w'):
+	pass
+
 with open('init_database.txt', 'w') as f:
     f.write("from pokemoni.models import *\n")
 
