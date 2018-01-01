@@ -197,4 +197,5 @@ def druzinka(request, num):
 
 def zoznam(request):
     template_name = 'pokemoni/zoznam.html'
-    return render(request, template_name, {})
+    druzinky = Druzinka.objects.all()
+    return render(request, template_name, {'druzinky': druzinky})

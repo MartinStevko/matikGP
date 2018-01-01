@@ -1992,8 +1992,8 @@ with open('init_database.txt', 'w') as f:
         f.write("Druzinka.objects.create(nazov='%s', url_number=%d)\n" % (nazov, k))
         f.write("Ucet.objects.create(idDruzinka_id=%d)\n" % (i+1))
 
-    f.write("Druzinka.objects.create(nazov='Obchod', url_number=7)\n")
-    f.write("Druzinka.objects.create(nazov='Mrtvoly', url_number=8)\n")
+    f.write("Druzinka.objects.create(nazov='Obchod', url_number=None)\n")
+    f.write("Druzinka.objects.create(nazov='Mrtvoly', url_number=None)\n")
 
     f.write("Akcia.objects.create(meno='Zacni hru')\n")
     f.write("Akcia.objects.create(meno='Ukonci hru')\n")

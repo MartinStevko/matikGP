@@ -4,6 +4,7 @@
     <title>Zoznam podstránok</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
     <h1>Zoznam podstránok</h1>
     <ul>
       <li><a href={% url 'admin:index' %}>Admin</a></li>
@@ -12,6 +13,15 @@
       <li><a href={% url 'pokemoni:trening' %}>Tréningové centrum</a></li>
       <li><a href={% url 'pokemoni:obchod' %}>Obchod s pokemónmi</a></li>
       <li><a href={% url 'pokemoni:jedalen' %}>Jedáleň</a></li>
+    </ul>
+    {% endif %}
+    <h1>Stránky družiniek</h1>
+    <ul>
+        {% for druzinka in druzinky %}
+        {% if druzinka.url_number %}
+        <li><a href={% url 'pokemoni:druzinka' druzinka.url_number %}>{{ druzinka.nazov }}</a></li>
+        {% endif %}
+        {% endfor %}
     </ul>
 </body>
 </html>
