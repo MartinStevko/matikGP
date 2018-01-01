@@ -1,7 +1,7 @@
 from django.db import models
 
 class Druzinka(models.Model):
-    nazov = models.CharField(max_length=100)
+    nazov = models.CharField(max_length=100, unique=True)
     url_number = models.IntegerField(unique=True, null=True)
 
     def __str__(self):
