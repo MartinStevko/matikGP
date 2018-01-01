@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-1. Cloned matigp project
+1. Cloned matikgp project
 2. Python virtual environment set up and django installed
 
 ## Procedure
