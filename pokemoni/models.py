@@ -2,7 +2,7 @@ from django.db import models
 
 class Druzinka(models.Model):
     nazov = models.CharField(max_length=100)
-    url_number = models.IntegerField(default=424769, unique=True)
+    url_number = models.IntegerField(unique=True)
 
     def __str__(self):
         return "Družinka {}".format(self.nazov)
@@ -10,7 +10,7 @@ class Druzinka(models.Model):
 class Ucet(models.Model):
     idDruzinka = models.OneToOneField(Druzinka, on_delete=models.CASCADE, null=True)
 
-    peniaze = models.IntegerField(default=0)
+    peniaze = models.IntegerField(default=1000)
     popularita = models.IntegerField(default=0)
 
     def __str__(self):
