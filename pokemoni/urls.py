@@ -11,4 +11,5 @@ urlpatterns = [
     path('druzinka/<int:num>', views.druzinka, name='druzinka'),
     path('jedalen', views.jedalen, name='jedalen'),
     path('spravca', views.spravca, name='spravca'),
+    path('', views.zoznam, name='index'),
 ]

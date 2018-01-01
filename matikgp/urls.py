@@ -20,5 +20,4 @@ import pokemoni
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pokemoni/', include('pokemoni.urls')),
-    path('', pokemoni.views.zoznam, name=''),
 ]

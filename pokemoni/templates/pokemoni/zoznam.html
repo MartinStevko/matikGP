@@ -5,14 +5,13 @@
 </head>
 <body>
     <h1>Zoznam podstránok</h1>
-    <div>
-      <li><a href=admin/>Admin</a></li>
-      <li><a href=pokemoni/spravca>Správca hry</a></li>
-      <li><a href=pokemoni/prehlad>Všeobecný prehľad</a></li>
-      <li><a href=pokemoni/druzinka/>Družinkový náhľad</a></li>
-      <li><a href=pokemoni/trening>Tréningové centrum</a></li>
-      <li><a href=pokemoni/obchod>Obchod s pokemónmi</a></li>
-      <li><a href=pokemoni/jedalen>Jedáleň</a></li>
-    </div>
+    <ul>
+      <li><a href={% url 'admin:index' %}>Admin</a></li>
+      <li><a href={% url 'pokemoni:spravca' %}>Správca hry</a></li>
+      <li><a href={% url 'pokemoni:prehlad' %}>Všeobecný prehľad</a></li>
+      <li><a href={% url 'pokemoni:trening' %}>Tréningové centrum</a></li>
+      <li><a href={% url 'pokemoni:obchod' %}>Obchod s pokemónmi</a></li>
+      <li><a href={% url 'pokemoni:jedalen' %}>Jedáleň</a></li>
+    </ul>
 </body>
 </html>
