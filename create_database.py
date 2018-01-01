@@ -1966,7 +1966,12 @@ def format(input_data, output_data, char):
     return output_data
 
 pokemon_mena = format(p_mena, pokemon_mena, '\t')
+
 trener_mena = format(t_mena, trener_mena, '\n')
+for meno in trener_mena:
+	if meno.find(',') != -1:
+		meno = meno[:meno.find(',')]
+
 trener_priezviska = format(t_priezviska, trener_priezviska, ' ')
 
 
@@ -1979,28 +1984,28 @@ with open('init_database.txt', 'w') as f:
         nazov = 'Druzinka '+str(i+1)
         k = randint(100000,999999)
         f.write("Druzinka.objects.create(nazov='%s', url_number=%d)\n" % (nazov, k))
-        f.write("Ucet.objects.create(id=%d)\n" % (i+1))
+        f.write("Ucet.objects.create(idDruzinka_id=%d)\n" % (i+1))
 
-    f.write("Druzinka.objects.create(nazov='Obchod', url_number='6')\n")
-    f.write("Druzinka.objects.create(nazov='Mrtvoly', url_number='7')\n")
+    f.write("Druzinka.objects.create(nazov='Obchod', url_number=7)\n")
+    f.write("Druzinka.objects.create(nazov='Mrtvoly', url_number=8)\n")
 
-    f.write("Akcia.objects.create(meno='Začni hru')\n")
-    f.write("Akcia.objects.create(meno='Ukonči hru')\n")
+    f.write("Akcia.objects.create(meno='Zacni hru')\n")
+    f.write("Akcia.objects.create(meno='Ukonci hru')\n")
 
-    for i in range(100):
+    for i in range(200):
         d = pokemon_mena
         nazov = choice(d)
         n = d.index(nazov)
         del d[n]
-        idDruzinka = 6
+        idDruzinka = 7
         sila = randint(5,12)
         rychlost = randint(1,10)
         postreh = randint(6,12)
         odolnost = randint(1,7)
         jedol = 'True'
-        f.write("Pokemon.objects.create(nazov='%s', idDruzinka=%d, sila=%d, rychlost=%d, postreh=%d, odolnost=%d, jedol=%s)\n" % (nazov, idDruzinka, sila, rychlost, postreh, odolnost, jedol))
+        f.write("Pokemon.objects.create(nazov='%s', idDruzinka_id=%d, sila=%d, rychlost=%d, postreh=%d, odolnost=%d, jedol=%s)\n" % (nazov, idDruzinka, sila, rychlost, postreh, odolnost, jedol))
 
-    for i in range(30):
+    for i in range(40):
         m = trener_mena
         meno = choice(m)
         qSila = randint(1,5)
