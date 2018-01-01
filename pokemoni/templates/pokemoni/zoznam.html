@@ -1,7 +1,9 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Zoznam podstránok</title>
+    <link rel="stylesheet" href="{% static 'css/nedostatocne_opravnenia.css' %}">
 </head>
 <body>
 {% if user.is_authenticated %}
