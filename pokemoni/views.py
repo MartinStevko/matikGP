@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
 
 import time
-from random import randint
+from random import randint, uniform
 
 from .models import Pokemon, Trener, Kurz, Druzinka, Ucet, Akcia
 from .forms import TreningForm, ObchodForm, JedalenForm, SpravcaForm
@@ -175,16 +175,26 @@ def spravca(request):
         elif akcia == '3':
             pokemoni = Pokemon.objects.all()
 
+            sutaz = []
+
             for pokemon in pokemoni:
                 if not hasattr(pokemon.idDruzinka, 'ucet'):
                     continue
                 elif not pokemon.jedol:
                     pokemon.idDruzinka = Druzinka.objects.get(nazov='Mrtvoly')
                 else:
+                    sutaz.append((skore(pokemon), pokemon))
                     pokemon.jedol = False
                     pokemon.energia = max(10, pokemon.energia+1)
 
                 pokemon.save()
+
+            sutaz.sort(reverse=True)
+
+            for i in range(len(sutaz)):
+                i[1].idDruzinka.ucet.popularita += round(100-((i+1)**2)/50)
+
+                i[1].idDruzinka.ucet.save()
 
             treneri = Trener.objects.all()
 
@@ -223,3 +233,6 @@ def zoznam(request):
     template_name = 'pokemoni/zoznam.html'
     druzinky = Druzinka.objects.all()
     return render(request, template_name, {'druzinky': druzinky})
+
+def skore(p):
+    return p.sila**3*p.rychlost**4*p.postreh**3.5*p.odolnost**2.5*uniform(0.95, 1.05)
