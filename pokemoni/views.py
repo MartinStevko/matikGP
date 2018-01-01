@@ -192,9 +192,9 @@ def spravca(request):
             sutaz.sort(reverse=True)
 
             for i in range(len(sutaz)):
-                i[1].idDruzinka.ucet.popularita += round(100-((i+1)**2)/50)
+                sutaz[i][1].idDruzinka.ucet.popularita += round(100-((i+1)**2)/50)
 
-                i[1].idDruzinka.ucet.save()
+                sutaz[i][1].idDruzinka.ucet.save()
 
             treneri = Trener.objects.all()
 
