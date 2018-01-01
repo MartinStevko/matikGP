@@ -100,11 +100,11 @@ def jedalen(request):
         except (KeyError, ValueError, Pokemon.DoesNotExist):
             return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Pokémon neexistuje'})
 
-        if not hasattr(pokemon.idDruzinka, 'ucet') or pokemon.idDruzinka.ucet.peniaze < int(request.POST['cena']):
+        if not hasattr(pokemon.idDruzinka, 'ucet') or pokemon.idDruzinka.ucet.peniaze < 5:
             return render(request, template_name, {'be': be, 'form': form, 'error_message': 'Družinka nemá dosť peňazí'})
 
         pokemon.jedol = True
-        pokemon.idDruzinka.ucet.peniaze -= int(request.POST['cena'])
+        pokemon.idDruzinka.ucet.peniaze -= 5
 
         pokemon.save()
         pokemon.idDruzinka.ucet.save()

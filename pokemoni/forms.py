@@ -17,7 +17,5 @@ class ObchodForm(forms.Form):
 class JedalenForm(forms.Form):
     pokemon_id = forms.IntegerField(label='ID pokémona')
 
-    cena = forms.IntegerField(initial=0, widget=forms.widgets.HiddenInput())
-
 class SpravcaForm(forms.Form):
     akcia = forms.ModelChoiceField(queryset=Akcia.objects.all(), label='Akcia')
