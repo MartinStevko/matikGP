@@ -4,24 +4,27 @@
     <title>Zoznam podstránok</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
-    <h1>Zoznam podstránok</h1>
-    <ul>
-      <li><a href={% url 'admin:index' %}>Admin</a></li>
-      <li><a href={% url 'pokemoni:spravca' %}>Správca hry</a></li>
-      <li><a href={% url 'pokemoni:prehlad' %}>Všeobecný prehľad</a></li>
-      <li><a href={% url 'pokemoni:trening' %}>Tréningové centrum</a></li>
-      <li><a href={% url 'pokemoni:obchod' %}>Obchod s pokemónmi</a></li>
-      <li><a href={% url 'pokemoni:jedalen' %}>Jedáleň</a></li>
-    </ul>
+{% if user.is_authenticated %}
+<h1>Zoznam podstránok</h1>
+<ul>
+    <li><a href={% url 'admin:index' %}>Admin</a></li>
+    <li><a href={% url 'pokemoni:spravca' %}>Správca hry</a></li>
+    <li><a href={% url 'pokemoni:prehlad' %}>Všeobecný prehľad</a></li>
+    <li><a href={% url 'pokemoni:trening' %}>Tréningové centrum</a></li>
+    <li><a href={% url 'pokemoni:obchod' %}>Obchod s pokemónmi</a></li>
+    <li><a href={% url 'pokemoni:jedalen' %}>Jedáleň</a></li>
+</ul>
+<h1>Stránky družiniek</h1>
+<ul>
+    {% for druzinka in druzinky %}
+    {% if druzinka.url_number %}
+    <li><a href={% url 'pokemoni:druzinka' druzinka.url_number %}>{{ druzinka.nazov }}</a></li>
     {% endif %}
-    <h1>Stránky družiniek</h1>
-    <ul>
-        {% for druzinka in druzinky %}
-        {% if druzinka.url_number %}
-        <li><a href={% url 'pokemoni:druzinka' druzinka.url_number %}>{{ druzinka.nazov }}</a></li>
-        {% endif %}
-        {% endfor %}
-    </ul>
+    {% endfor %}
+</ul>
+{% else %}
+<h1 id="no">Na túto stránku nemáte dostatočné oprávnenia!</h1>
+<div id="debug">Pokračujte prihlásením do svojho účtu na <em>host_server_ip</em>/admin/login/?next=/admin/</div>
+{% endif %}
 </body>
 </html>
