@@ -122,7 +122,7 @@ def zaciatok(t = 10**11):
     try:
         with open('setup/zaciatok.txt', 'r') as f:
             t = int(f.readline())
-    except(ValueError):
+    except(ValueError, FileNotFoundError):
         t = 10**11
     return t
 
@@ -135,7 +135,7 @@ def koniec(t = 10**11):
     try:
         with open('setup/koniec.txt', 'r') as f:
             t = int(f.readline())
-    except(ValueError):
+    except(ValueError, FileNotFoundError):
         t = 10**11
     return t
 
