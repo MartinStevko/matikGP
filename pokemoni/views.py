@@ -189,7 +189,7 @@ def spravca(request):
                 else:
                     sutaz.append((skore(pokemon), pokemon))
                     pokemon.jedol = False
-                    pokemon.energia = max(10, pokemon.energia+2)
+                    pokemon.energia = min(10, pokemon.energia+2)
 
                 pokemon.save()
 
