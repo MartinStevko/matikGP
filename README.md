@@ -5,7 +5,7 @@ Django project for correspondence seminars. Grand Prix of winter Matik 2018.
 
  - Python (3 or later, version 3.6.0 recommended)
  - Django (version 2.0)
- - Virtual enviroment
+ - virtual enviroment
 
 ### Windows machine
 Install Python from https://www.python.org/downloads/ and then in CMD type:
@@ -38,11 +38,15 @@ You have to get through local setup only once (per a project).
 
 ### Windows machine
 
+In CMD type:
+
 ```cmd
 py -m venv ENV_NAME
 ```
 
 ### Linux machine
+
+In Terminal type:
 
 ```cmd
 virtualenv ENV_NAME
@@ -50,7 +54,7 @@ virtualenv ENV_NAME
 
 ## Run server
 
-Don't forget to remove all data from files `"zaciatok.txt"` and `"koniec.txt"` in `"matikgp\setup"` directory before starting server.
+Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `matikgp\setup` directory before starting server.
 
 ### Windows machine
 
