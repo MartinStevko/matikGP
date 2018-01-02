@@ -1,1 +1,2 @@
-py -m venv ENV_NAME
+SET /P _inputname= Name of virtual enviroment:
+py -m venv %_inputname%
