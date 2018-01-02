@@ -34,7 +34,7 @@ python3 -m pip install virtualenv
 
 ## Server setup for local network
 
-You have to get through local setup only once (per a project).
+You have to get through local setup only once (per a project) or simply execute `setup\YOUR_OS-setup.bat` file.
 
 ### Windows machine
 
@@ -58,7 +58,7 @@ iptables -I INPUT -p tcp -m tcp --dport PORT_NUMBER -j ACCEPT
 
 ## Run server
 
-Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `matikgp\setup` directory before starting server.
+Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `matikgp\setup` directory before starting server or simply execute `setup\YOUR_OS-run.bat` file.
 
 ### Windows machine
 
