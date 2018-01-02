@@ -1977,7 +1977,7 @@ trener_priezviska = format(t_priezviska, trener_priezviska, ' ')
 
 from random import choice, randint
 
-with open('init_database.txt', 'w') as f:
+with open('setup\init_database.txt', 'w') as f:
     f.write("from pokemoni.models import *\n")
 
     for i in range(6):
