@@ -38,18 +38,22 @@ You have to get through local setup only once (per a project).
 
 ### Windows machine
 
-In CMD type:
-
+In CMD:
+Create virtual enviroment
 ```cmd
 py -m venv ENV_NAME
 ```
 
 ### Linux machine
 
-In Terminal type:
-
+In Terminal:
+Create virtual enviroment
 ```cmd
 virtualenv ENV_NAME
+```
+and allow remote acces for desired port:
+```bash
+iptables -I INPUT -p tcp -m tcp --dport PORT_NUMBER -j ACCEPT
 ```
 
 ## Run server
@@ -78,11 +82,7 @@ In Terminal:
 ```bash
 source ENV_NAME/bin/activate
 ```
-4. Allow remote acces for desired port:
-```bash
-iptables -I INPUT -p tcp -m tcp --dport PORT_NUMBER -j ACCEPT
-```
-5. Run server on your desired port:
+4. Run server on your desired port:
 ```bash
 python manage.py runserver 0.0.0.0:PORT_NUMBER
 ```
