@@ -8,3 +8,7 @@ pokemoni/migrations
 zaciatok.txt
 koniec.txt
 init_database.txt
+matikgp/Include
+matikgp/Lib
+matikgp/Scripts
+matikgp/pyvenv.cfg
