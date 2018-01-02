@@ -9,7 +9,7 @@
 
 1. Login as root user
 2. Activate virtual environment
-3. Allow remote acces for desired port (not needed for standart http port 80):
+3. Allow remote acces for desired port:
 ```bash
 iptables -I INPUT -p tcp -m tcp --dport PORT_NUMBER -j ACCEPT
 ```
