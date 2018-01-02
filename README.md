@@ -106,4 +106,6 @@ source ENV_NAME/bin/activate
 python manage.py runserver 0.0.0.0:PORT_NUMBER
 ```
 
-After all that you can access to admin site by typing `localhost:PORT_NUMBER/admin` and to app by typing `localhost:PORT_NUMBER/pokemoni` (`localhost` can be substitute for an IP address of server e.g. `192.168.1.47`).
+## Application access
+
+After all that you can access to admin site by typing `localhost:PORT_NUMBER/admin` and to app by typing `localhost:PORT_NUMBER/pokemoni` (`localhost` can be substituted by an IP address of server e.g. `192.168.1.47`).
