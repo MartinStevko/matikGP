@@ -117,10 +117,10 @@ def zaciatok(t = 10**11):
     if t != 10**11:
         global zaciatok_cas
         zaciatok_cas = round(t)
-        with open('zaciatok.txt', 'w') as f:
+        with open('setup\zaciatok.txt', 'w') as f:
             f.write(str(zaciatok_cas))
     try:
-        with open('zaciatok.txt', 'r') as f:
+        with open('setup\zaciatok.txt', 'r') as f:
             t = int(f.readline())
     except(ValueError):
         t = 10**11
@@ -130,10 +130,10 @@ def koniec(t = 10**11):
     if t != 10**11:
         global koniec_cas
         koniec_cas = zaciatok()+(((t-zaciatok())//480)+1)*480
-        with open('koniec.txt', 'w') as f:
+        with open('setup\koniec.txt', 'w') as f:
             f.write(str(round(koniec_cas)))
     try:
-        with open('koniec.txt', 'r') as f:
+        with open('setup\koniec.txt', 'r') as f:
             t = int(f.readline())
     except(ValueError):
         t = 10**11
@@ -170,7 +170,7 @@ def spravca(request):
         if akcia == '1':
             message = 'Hra začala'
             zaciatok(time.time())
-            with open('koniec.txt', 'w') as f:
+            with open('setup\koniec.txt', 'w') as f:
                 f.write('')
         elif akcia == '2':
             message = 'Hra skončí po konci tohto kola (akcia sa odvráti jedine premazaním súboru koniec.txt)'
