@@ -189,7 +189,7 @@ def spravca(request):
                 else:
                     sutaz.append((skore(pokemon), pokemon))
                     pokemon.jedol = False
-                    pokemon.energia = max(10, pokemon.energia+1)
+                    pokemon.energia = max(10, pokemon.energia+2)
 
                 pokemon.save()
 
@@ -197,13 +197,14 @@ def spravca(request):
 
             for i in range(len(sutaz)):
                 sutaz[i][1].idDruzinka.ucet.popularita += round(100-((i+1)**2)/50)
+                sutaz[i][1].idDruzinka.ucet.popularita += round((100-i)**2/50)
 
                 sutaz[i][1].idDruzinka.ucet.save()
 
             treneri = Trener.objects.all()
 
             for trener in treneri:
-                if randint(1, 4) == 4:
+                if randint(1, 7) == 4:
                     trener.vMeste = True
                 else:
                     trener.vMeste = False
