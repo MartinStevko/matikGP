@@ -39,6 +39,7 @@ You have to get through local setup only once (per a project) or simply execute 
 ### Windows machine
 
 In CMD:
+
 Create virtual enviroment
 ```cmd
 py -m venv ENV_NAME
@@ -47,6 +48,7 @@ py -m venv ENV_NAME
 ### Linux machine
 
 In Terminal:
+
 Create virtual enviroment
 ```cmd
 virtualenv ENV_NAME
@@ -56,6 +58,20 @@ and allow remote acces for desired port:
 iptables -I INPUT -p tcp -m tcp --dport PORT_NUMBER -j ACCEPT
 ```
 
+## Base database creation
+
+Just run `setup\init_database.bat` script. If you don't want to create base database don't forget to make and then apply migrations. You can do it by typing:
+
+```
+manage.py makemigrations pokemoni
+```
+```
+manage.py migrate
+```
+
+to your CMD or Bash into `matikgp` directory.
+
+
 ## Run server
 
 Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `matikgp\setup` directory before starting server or simply execute `setup\YOUR_OS-run.bat` file.
@@ -63,6 +79,7 @@ Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `m
 ### Windows machine
 
 In CMD:
+
 1. Go to matikgp directory
 2. Activate your virtual environment:
 ```cmd
@@ -76,7 +93,9 @@ python manage.py runserver 0.0.0.0:PORT_NUMBER
 ### Linux machine
 
 1. Login as root user
+
 In Terminal:
+
 2. Go to matikgp directory
 3. Activate your virtual environment:
 ```bash
