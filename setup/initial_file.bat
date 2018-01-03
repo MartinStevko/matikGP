@@ -15,8 +15,14 @@ pause
 
 %~dp0\create_database.py
 manage.py shell < %~dp0\init_database.txt
-del %~dp0\init_database.txt
+del .\barcodes\init_database.txt
+copy .\init_database.txt .\barcodes\init_database.txt
+del .\init_database.txt
 echo Database successfully created!
+pause
+
+.\barcodes\stitkovac.bat
+echo Barcodes successfully created!
 pause
 
 break>"%~dp0\zaciatok.txt"
