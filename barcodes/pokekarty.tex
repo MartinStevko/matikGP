@@ -1,0 +1,86 @@
+%%%%%%%%%%%%%%%%%%%%%%%% Nastavenia %%%%%%%%%%%%%%%%%%%%%%%%
+\newcount\vyska
+\vyska=10            %%% pocet stitkov na vysku na papieri
+
+\newtoks\padding
+\padding={0.7cm}     %%% nastavenie tlaciarenskeho okraju
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Dokument %%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt, a4paper]{article}
+\special{papersize=210mm,297mm}
+\pagestyle{plain}
+
+\usepackage[top=0cm, bottom=0cm, left=0cm, right=0cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+
+\usepackage{tabularx}     %%% tabulka
+\usepackage{calc}         %%% na vypocty vysok minipage-u
+\usepackage{ltablex}      %%% na pagebreak v tabulke
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Fonty %%%%%%%%%%%%%%%%%%%%%%%%%%
+\font\n=csr10 scaled \magstep 1
+\font\b=csbx10 scaled \magstep 2
+\font\s=csr8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Stitky %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{stitky}
+\setcounter{stitky}{0}    %%% pocitadlo stitkov pre zatabulkovanie
+
+\newcounter{bar}
+\setcounter{bar}{0}    %%% pocitadlo stitkov pre zatabulkovanie
+
+\newtoks\h
+\h={\paperheight/\vyska}  %%% vypocet vysky minipage-u
+
+\parindent=0pt
+\parskip=0pt
+
+\newcommand\Tstrut{\rule{0pt}{3ex}}
+
+\def\stitok#1#2#3#4#5{%
+\addtocounter{stitky}{1}
+\hspace{\the\padding}
+\begin{minipage}[c][\the\h][c]{\hsize-\the\padding-\the\padding}
+    \begin{flushright}
+	Meno: \hfill \textbf{#1}
+	\end{flushright}
+	\vspace{-5pt}
+	\begin{tabular}{l c l}
+	\hline
+		Sila: #2 && Postreh: #3\Tstrut\\
+		Rýchlosť: #4 && Odolnosť: #5	
+	\end{tabular}
+\end{minipage}
+\if\value{stitky}=2
+\\ \setcounter{stitky}{0}
+\else
+&
+\fi}
+
+\def\barcode#1{%
+\addtocounter{bar}{1}
+\hspace{\the\padding}
+\begin{minipage}[c][\the\h][c]{\hsize-\the\padding-\the\padding}
+\begin{center}
+    \includegraphics[angle=90,origin=c,scale=0.3]{#1}
+\end{center}
+\end{minipage}
+\if\value{bar}=2
+\\ \setcounter{bar}{0}
+\else
+&
+\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{tabularx}{\linewidth}{XXX}
+    \input pokestitky.tex
+\end{tabularx}
+\end{document}
