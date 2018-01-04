@@ -20,9 +20,6 @@ py -m pip install virtualenv
 In Bash type:
 
 ```bash
-sudo apt install Python
-```
-```bash
 sudo apt install pip
 ```
 ```bash
@@ -34,7 +31,7 @@ python3 -m pip install virtualenv
 
 ## Server setup for local network
 
-You have to get through local setup only once (per a project) or simply execute `setup\YOUR_OS-setup.bat` file.
+You have to get through local setup only once (per a project).
 
 ### Windows machine
 
@@ -44,6 +41,7 @@ Create virtual enviroment
 ```cmd
 py -m venv ENV_NAME
 ```
+or simply execute `setup\windows-setup.bat` file.
 
 ### Linux machine
 
@@ -74,7 +72,7 @@ to your CMD or Bash into `matikgp` directory.
 
 ## Run server
 
-Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `matikgp\setup` directory before starting server or simply execute `setup\YOUR_OS-run.bat` file.
+Don't forget to remove all data from files `zaciatok.txt` and `koniec.txt` in `matikgp\setup` directory before starting server.
 
 ### Windows machine
 
@@ -89,6 +87,7 @@ ENV_NAME\Scripts\activate
 ```cmd
 python manage.py runserver 0.0.0.0:PORT_NUMBER
 ```
+or simply execute `setup\windows-run.bat` file (removes data from files above too).
 
 ### Linux machine
 
