@@ -14,7 +14,7 @@ manage.py createsuperuser
 pause
 
 %~dp0\create_database.py
-manage.py shell < %~dp0\init_database.txt
+manage.py shell < .\init_database.txt
 del .\barcodes\init_database.txt
 copy .\init_database.txt .\barcodes\init_database.txt
 del .\init_database.txt
