@@ -21,10 +21,6 @@ del .\init_database.txt
 echo Database successfully created!
 pause
 
-.\barcodes\stitkovac.bat
-echo Barcodes successfully created!
-pause
-
 break>"%~dp0\zaciatok.txt"
 break>"%~dp0\koniec.txt"
 echo Required files successfully created!
