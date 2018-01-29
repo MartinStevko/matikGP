@@ -197,7 +197,7 @@ def spravca(request):
 
             for i in range(len(sutaz)):
                 sutaz[i][1].idDruzinka.ucet.popularita += round(100-((i+1)**2)/50)
-                sutaz[i][1].idDruzinka.ucet.popularita += round((100-i)**2/50)
+                sutaz[i][1].idDruzinka.ucet.peniaze += round((100-i)**2/50)
 
                 sutaz[i][1].idDruzinka.ucet.save()
 
